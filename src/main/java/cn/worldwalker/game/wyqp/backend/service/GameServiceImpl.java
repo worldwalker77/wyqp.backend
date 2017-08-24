@@ -23,7 +23,7 @@ import cn.worldwalker.game.wyqp.backend.domain.VersionModel;
 @Service
 public class GameServiceImpl implements GameService{
 	
-	private static final String FILE_PERSISTENCE_PAHT = "/home/data/clientversion/";//"D:/test/";
+	private static final String FILE_PERSISTENCE_PAHT = "/home/data-wyqp/clientversion/";//"D:/test/";
 	
 //	private static final String UNRAR_PATH = "/home/tomcat-file/apache-tomcat-7.0.73/ROOT/clientversion/";//"D:/test/";
 	
@@ -31,9 +31,9 @@ public class GameServiceImpl implements GameService{
 	
 	private static final String UNRAR_PATH1 = "C:/Users/jinfeng.liu/Desktop/rar2/";//"D:/test/";
 	
-	private static final String UPDATE_RUL = "http://file.wyqp.worldwalker.cn/clientversion/VERSION";//"D:/test/";
+	private static final String UPDATE_RUL = "http://backend.wyqp.worldwalker.cn/clientversion/VERSION";//"D:/test/";
 	
-	private static final String CODE_URL = "http://file.wyqp.worldwalker.cn/clientversion/VERSION/game_code_VERSION.zip";//"D:/test/";
+	private static final String CODE_URL = "http://backend.wyqp.worldwalker.cn/clientversion/VERSION/game_code_VERSION.zip";//"D:/test/";
 	@Autowired
 	private VersionDao versionDao;
 

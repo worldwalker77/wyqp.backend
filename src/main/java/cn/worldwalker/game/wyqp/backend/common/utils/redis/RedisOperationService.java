@@ -13,7 +13,7 @@ public class RedisOperationService {
 	private JedisTemplate jedisTemplate;
 	public UserInfo getUserInfo(String token){
 		String temp = jedisTemplate.get(token);
-		if (StringUtils.isEmpty(temp)) {
+		if (!StringUtils.isEmpty(temp)) {
 			return JsonUtil.toObject(temp, UserInfo.class);
 		}
 		return null;

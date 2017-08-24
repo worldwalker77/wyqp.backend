@@ -152,7 +152,7 @@ public class GameController {
 			String fileName = file.getOriginalFilename();
 			String path = dir.getAbsolutePath() + "/" + fileName;
 			file.transferTo(new File(path));
-			result.setData("http://file.wyqp.worldwalker.cn/voicefiles/" + roomId + "/" + fileName);
+			result.setData("http://backend.wyqp.worldwalker.cn/voicefiles/" + roomId + "/" + fileName);
 		} catch (Exception e) {
 			result.setCode(1);
 			result.setDesc("系统异常");
