@@ -2,19 +2,17 @@ package cn.worldwalker.game.wyqp.backend.service;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import cn.worldwalker.game.wyqp.backend.common.exception.ExceptionEnum;
+import cn.worldwalker.game.wyqp.backend.common.utils.CustomizedPropertyConfigurer;
 import cn.worldwalker.game.wyqp.backend.common.utils.RarUtil;
 import cn.worldwalker.game.wyqp.backend.dao.VersionDao;
 import cn.worldwalker.game.wyqp.backend.domain.Result;
@@ -23,17 +21,15 @@ import cn.worldwalker.game.wyqp.backend.domain.VersionModel;
 @Service
 public class GameServiceImpl implements GameService{
 	
-	private static final String FILE_PERSISTENCE_PAHT = "/home/data-wyqp/clientversion/";//"D:/test/";
-	
-//	private static final String UNRAR_PATH = "/home/tomcat-file/apache-tomcat-7.0.73/ROOT/clientversion/";//"D:/test/";
+	private static final String FILE_PERSISTENCE_PAHT = "/home/data-"  + CustomizedPropertyConfigurer.getContextProperty("cur.company") +  "/clientversion/";//"D:/test/";
 	
 	private static final String FILE_PERSISTENCE_PAHT1 = "C:/Users/jinfeng.liu/Desktop/rar1/";//"D:/test/";
 	
 	private static final String UNRAR_PATH1 = "C:/Users/jinfeng.liu/Desktop/rar2/";//"D:/test/";
 	
-	private static final String UPDATE_RUL = "http://backend.wyqp.worldwalker.cn/clientversion/VERSION";//"D:/test/";
+	private static final String UPDATE_RUL = "http://" + CustomizedPropertyConfigurer.getContextProperty("backend.domain")  + "/clientversion/VERSION";//"D:/test/";
 	
-	private static final String CODE_URL = "http://backend.wyqp.worldwalker.cn/clientversion/VERSION/game_code_VERSION.zip";//"D:/test/";
+	private static final String CODE_URL = "http://" + CustomizedPropertyConfigurer.getContextProperty("backend.domain") + "/clientversion/VERSION/game_code_VERSION.zip";//"D:/test/";
 	@Autowired
 	private VersionDao versionDao;
 

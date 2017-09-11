@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.worldwalker.game.wyqp.backend.common.exception.ExceptionEnum;
+import cn.worldwalker.game.wyqp.backend.common.utils.CustomizedPropertyConfigurer;
 import cn.worldwalker.game.wyqp.backend.common.utils.JsonUtil;
 import cn.worldwalker.game.wyqp.backend.common.utils.redis.RedisOperationService;
 import cn.worldwalker.game.wyqp.backend.domain.Result;
@@ -118,9 +119,9 @@ public class GameController {
 	@ResponseBody
     public Result upload(@RequestParam("file") MultipartFile file, String token, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException {
 		if (file == null) {
-			log.info("请求, 上传语音文件， file:"+ ", token:" + token);
+			log.error("请求, 上传语音文件， file:"+ ", token:" + token);
 		}else{
-			log.info("请求, 上传语音文件， file:"+ file.toString() + ", token:" + token);
+			log.error("请求, 上传语音文件， file:"+ file.toString() + ", token:" + token);
 		}
 		if (StringUtils.isEmpty(token)) {
 			token = request.getHeader("token");
@@ -152,14 +153,16 @@ public class GameController {
 			String fileName = file.getOriginalFilename();
 			String path = dir.getAbsolutePath() + "/" + fileName;
 			file.transferTo(new File(path));
-			result.setData("http://backend.wyqp.worldwalker.cn/voicefiles/" + roomId + "/" + fileName);
+			result.setData("http://" + CustomizedPropertyConfigurer.getContextProperty("backend.domain") + "/voicefiles/" + roomId + "/" + fileName);
 		} catch (Exception e) {
 			result.setCode(1);
 			result.setDesc("系统异常");
 			e.printStackTrace();
 		}
-		log.info("返回, 上传语音文件， result:" + JsonUtil.toJson(result));
+		log.error("返回, 上传语音文件， result:" + JsonUtil.toJson(result));
         return result;
     }
+	
+	
 	
 }
