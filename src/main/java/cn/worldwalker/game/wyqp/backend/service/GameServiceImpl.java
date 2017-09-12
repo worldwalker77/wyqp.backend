@@ -27,9 +27,9 @@ public class GameServiceImpl implements GameService{
 	
 	private static final String UNRAR_PATH1 = "C:/Users/jinfeng.liu/Desktop/rar2/";//"D:/test/";
 	
-	private static final String UPDATE_RUL = "http://" + CustomizedPropertyConfigurer.getContextProperty("backend.domain")  + "/clientversion/VERSION";//"D:/test/";
+	private static final String UPDATE_RUL = "http://" + CustomizedPropertyConfigurer.getContextProperty("cur.domain")  + "/clientversion/VERSION";//"D:/test/";
 	
-	private static final String CODE_URL = "http://" + CustomizedPropertyConfigurer.getContextProperty("backend.domain") + "/clientversion/VERSION/game_code_VERSION.zip";//"D:/test/";
+	private static final String CODE_URL = "http://" + CustomizedPropertyConfigurer.getContextProperty("cur.domain") + "/clientversion/VERSION/game_code_VERSION.zip";//"D:/test/";
 	@Autowired
 	private VersionDao versionDao;
 
