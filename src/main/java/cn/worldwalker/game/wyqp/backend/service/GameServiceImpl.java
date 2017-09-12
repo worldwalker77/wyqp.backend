@@ -57,7 +57,7 @@ public class GameServiceImpl implements GameService{
         	
 			File destDir = new File(unrarPath);
 			RarUtil.unrar(sourceRar, destDir);
-			
+			VersionModel vmq = versionDao.selectVersion(new VersionModel());
 			/**将下载链接持久化到数据库中*/
 			String version = fileName.substring(0, fileName.length() - 4);
 			String updateUrl = UPDATE_RUL.replace("VERSION", version);
@@ -67,7 +67,12 @@ public class GameServiceImpl implements GameService{
 			versionModel.setUpdateUrl(updateUrl);
 			versionModel.setNewFeature(newFeature);
 			versionModel.setClientVersion(clientVersion);
-			versionDao.updateVersion(versionModel);
+			if (vmq == null) {
+				versionDao.insertVersion(versionModel);
+			}else{
+				versionModel.setId(vmq.getId());
+				versionDao.updateVersion(versionModel);
+			}
 			
 		} catch (Exception e) {
 			result.setCode(ExceptionEnum.SYSTEM_ERROR.code);

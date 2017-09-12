@@ -14,4 +14,6 @@ public interface VersionDao {
 	
 	public VersionModel selectVersion(VersionModel versionModel);
 	
+	public void insertVersion(VersionModel versionModel);
+	
 }
